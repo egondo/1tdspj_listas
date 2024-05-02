@@ -1,28 +1,34 @@
 sorteada = "frango assado"
 erros = 0
-
-segredo = ""
-
-for c in sorteada:
-    if c == ' ':
-        segredo = segredo + "   "
-    else:
-        segredo = segredo + "_ "
-
-print(f"{segredo}\nerros: {erros}")
-letra = input("Informe a letra: ").lower()
-
-#pegue a letra digitada e gere o novo segredo
-#suponha que a letra informada seja o a
-#segredo -> _ _ a _ _    a _ _ a _ _
+chutadas = " "
 
 segredo = ""
 for c in sorteada:
-    if c == ' ':
-        segredo = segredo + "   "
-    elif c == letra:
+    if c in chutadas:
         segredo = segredo + c + " "
     else:
         segredo = segredo + "_ "
 
-print(f"{segredo}\nerros: {erros}")
+while erros < 6 and "_" in segredo:
+    print(f"{segredo}\nerros: {erros}")
+    letra = input("Informe a letra: ").lower()
+    chutadas = chutadas + letra
+
+    segredo = ""
+    for c in sorteada:
+        if c in chutadas:
+            segredo = segredo + c + " "
+        else:
+            segredo = segredo + "_ "
+
+    if not letra in sorteada:
+        erros = erros + 1
+    
+if erros == 6:
+    print(f"Você foi enforcado e a palavra era {sorteada}")
+else:
+    print(f"Parabéns, você acertou {sorteada}")    
+
+
+
+    
