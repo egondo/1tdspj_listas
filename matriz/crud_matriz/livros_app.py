@@ -1,3 +1,5 @@
+import arquivos
+
 def cadastra(conj: list):
     tit = input("Informe o título: ")
     cat = input("Informe a categoria: ")
@@ -54,12 +56,8 @@ def exclui(conj: list):
 
 
 
-
-
-
-
-
-estoque = []
+estoque = arquivos.le_arquivo("livros.csv")
+print(estoque)
 #quais informações de livros vamos armazenar?
 #titulo, categoria, sinopse, autor, editora, preço
 opcao = 0
@@ -84,4 +82,7 @@ while opcao != 5:
         altera(estoque)
     elif opcao == 4:
         exclui(estoque)
+    elif opcao == 5:
+        arquivos.grava_arquivo(estoque, "livros.csv")
+
     
