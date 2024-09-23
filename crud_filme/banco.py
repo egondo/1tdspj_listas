@@ -16,3 +16,29 @@ def insere_filme(filme: dict):
         with con.cursor() as cur:
             cur.execute(sql, filme)
         con.commit()
+
+def consulta_genero(genero: str) -> list:
+    sql = "select * from t_filme where genero like :gen order by data_lancamento desc"
+    with get_conexao() as con:
+        with con.cursor() as cur:
+            cur.execute(sql, {"gen": f"%{genero}%"})
+            lista = cur.fetchall()
+            return lista
+        
+def altera_filme(filme: dict):
+    sql = '''update t_filme set titulo=:titulo, diretor=:diretor, sinopse=:sinopse, data_lancamento=:data_lancamento, genero=:genero,
+    classificacao=:classificacao, avaliacao=:avaliacao, duracao=:duracao
+    where id=:id'''
+
+    with get_conexao() as con:
+        with con.cursor() as cur:
+            cur.execute(sql, filme)
+        con.commit()
+
+def apaga_filme(id: int):
+    sql = "delete from t_filme where id=:id"
+    with get_conexao() as con:
+        with con.cursor() as cur:
+            cur.execute(sql, {"id": id})
+        con.commit()
+    
