@@ -37,11 +37,25 @@ def cadastra_partida(partida: dict):
 
     banco.atualiza_time(time_casa)
     banco.atualiza_time(time_visi)
+
+    partida['casa'] = time_casa['id']
+    partida['visi'] = time_visi['id']
+
     banco.insere_partida(partida)
 
 
-
+def consulta_tabela_classificao() -> list:
+    times = banco.recupera_times()
+    #calcular as informações faltantes da tabela: saldo gols, 
+    #pontos, jogos e aproveitamento e mostrar e retornar 
+    #todas as informações em uma lista de tuplas ou uma 
+    #lista de listas.
 
 #partida dicionario
-jogo = {'casa': 'Palmeiras', 'visi': 'Botafoto', 
+jogo = {'casa': 'Palmeiras', 'visi': 'Botafogo', 
         'gv': 2, 'gc': 3, 'rodada': 1}
+cadastra_partida(jogo)
+
+jogo = {'casa': 'Flamengo', 'visi': 'Corinthians', 
+        'gv': 1, 'gc': 1, 'rodada': 1}
+cadastra_partida(jogo)
