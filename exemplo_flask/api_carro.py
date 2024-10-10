@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import db
+import banco_carro as bc
 
 app = Flask(__name__)
 
@@ -50,5 +51,42 @@ def altera_carro2():
             db.carros[ind] = dado
             return dado, 200
     return {"title": "Carro não encontrado", "status": 404}, 404
+
+
+@app.route("/carros/oracle", methods=["POST"])
+def insere_carro_oracle():
+    carro = request.json
+    try:
+        bc.insere(carro)
+        return carro, 201
+    except Exception as e:
+        return {'title': 'Nao foi possivel inserir carro no banco', 'status': 500}, 500
+
+@app.route("/carros/oracle/<int:id>", methods=["GET"])
+def recupera_id_oracle(id):
+    try:
+        carro = bc.recupera_id(id) 
+        if carro == None:
+            return {'title': f'Não existe carro com o id: {id}', 'status': 404}, 404
+        else:
+            return (carro, 200)
+    except Exception as e:
+        return {'title': 'Erro no banco de dado', 'status': 500}, 500
+
+@app.route("/carros/oracle", methods=["PUT"])
+def altera_carro_oracle():
+    carro = request.json
+    bc.update(carro)
+    return carro, 200
+
+
+
+
+
+
+
+
+
+
 
 app.run(debug=True)

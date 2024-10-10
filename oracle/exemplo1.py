@@ -1,7 +1,7 @@
 import oracledb
 
 url = "oracle.fiap.com.br/orcl"
-conn = oracledb.connect(user='pf0313', password='professor#23', dsn=url)
+conn = oracledb.connect(user='rm556491', password='200505', dsn=url)
 print("Versao do banco " + conn.version)
 
 cursor = conn.cursor()
