@@ -48,9 +48,15 @@ def consulta_tabela_classificao() -> list:
     times = banco.recupera_times()
     #calcular as informações faltantes da tabela: saldo gols, 
     #pontos, jogos e aproveitamento e mostrar e retornar 
-    #todas as informações em uma lista de tuplas ou uma 
-    #lista de listas.
-
+    #todas as informações em uma lista de dicionarios
+    retorno = []
+    for reg in times:
+        dado = {"nome": reg[1], "vitorias": reg[2], "empates": reg[3], 
+        "derrotas": reg[4], "gp": reg[5], "gc": reg[6]}
+        
+        retorno.append(dado)
+    return retorno
+    
 #partida dicionario
 jogo = {'casa': 'Palmeiras', 'visi': 'Botafogo', 
         'gv': 2, 'gc': 3, 'rodada': 1}

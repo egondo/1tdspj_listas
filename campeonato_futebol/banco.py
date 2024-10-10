@@ -5,6 +5,17 @@ def get_conexao():
                             dsn="oracle.fiap.com.br/orcl")
 
 
+def recupera_times():
+    sql = '''select id, nome, vitorias, empates, derrotas, 
+        gols_pro, gols_contra from t_time'''
+    
+    with get_conexao() as con:
+        with con.cursor() as cur:
+            cur.execute(sql)
+            dado = cur.fetchall()
+        return dado    
+
+
 def consulta_time(nome: str) -> dict:
     sql = '''select id, nome, vitorias, empates, derrotas, 
         gols_pro, gols_contra from t_time where nome = :nome'''
