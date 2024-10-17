@@ -19,6 +19,8 @@ def cadastra_partida(partida: dict):
     time_casa = cadastra_time(partida['casa'])
     time_visi = cadastra_time(partida['visi'])
 
+    print("PARTIDA ", partida)
+
     if partida['gc'] > partida['gv']:
         time_casa['vitorias'] = time_casa['vitorias'] + 1
         time_visi['derrotas'] = time_visi['derrotas'] + 1
@@ -51,17 +53,14 @@ def consulta_tabela_classificao() -> list:
     #todas as informações em uma lista de dicionarios
     retorno = []
     for reg in times:
+        jogos = reg[2] + reg[3] + reg[4]
+        pontos = reg[2] * 3 + reg[3]
+        aprov = (pontos * 100) / (jogos * 3)
+
         dado = {"nome": reg[1], "vitorias": reg[2], "empates": reg[3], 
-        "derrotas": reg[4], "gp": reg[5], "gc": reg[6]}
+        "derrotas": reg[4], "gp": reg[5], "gc": reg[6], "jogos": jogos,
+        "pontos": pontos, "aproveitamento": int(aprov)}
         
         retorno.append(dado)
     return retorno
     
-#partida dicionario
-jogo = {'casa': 'Palmeiras', 'visi': 'Botafogo', 
-        'gv': 2, 'gc': 3, 'rodada': 1}
-cadastra_partida(jogo)
-
-jogo = {'casa': 'Flamengo', 'visi': 'Corinthians', 
-        'gv': 1, 'gc': 1, 'rodada': 1}
-cadastra_partida(jogo)

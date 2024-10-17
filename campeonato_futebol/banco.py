@@ -56,8 +56,8 @@ def atualiza_time(time: dict):
         con.commit()
 
 def insere_partida(partida: dict):
-    sql = '''insert into t_partida(gols_casa, gols_visi, rodada,
-            id_casa, id_visi) values(:gc, :gv, :rodada, :casa, 
+    sql = '''insert into t_partida(gols_casa, gols_visitante, rodada,
+            id_timecasa, id_timevisitante) values(:gc, :gv, :rodada, :casa, 
             :visi)'''
     with get_conexao() as con:
         with con.cursor() as cur:
