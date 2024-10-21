@@ -2,8 +2,10 @@ import oracledb
 import os
 
 def get_conexao():
-    user = os.getenv("USER_BD")
-    pwd = os.getenv("PASSWD_BD")
+    #user = os.getenv("USER_BD")
+    #pwd = os.getenv("PASSWD_BD")
+    user = "pf0313"
+    pwd = "professor#23"
     print(user, pwd)
     return oracledb.connect(user=user, password=pwd,
                             dsn="oracle.fiap.com.br/orcl")
