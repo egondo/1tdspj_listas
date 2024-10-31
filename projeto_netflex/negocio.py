@@ -11,7 +11,7 @@ def insere_midia(filme: dict):
         banco.insere_midia(filme)
 
 def converte_midia_dict(midia: tuple) -> dict:
-    return {"id": midia[0], "titulo": midia[1], "categoria": midia[2], "tipo": midia[3], "nota": midia[4]/midia[5]}
+    return {"id": midia[0], "titulo": midia[1], "categoria": midia[2], "tipo": midia[3], "nota": midia[4]*(1.0)/midia[5]}
 
 def consulta_midias(id: int, titulo: str, categoria: str):
     if id:

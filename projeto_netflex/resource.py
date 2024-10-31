@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import negocio
+import traceback
 
 
 app = Flask(__name__)
@@ -10,8 +11,9 @@ def insere_filme():
     try:
         negocio.insere_midia(dado)
         return {"midia": dado, "status": 201}, 201
-    except:
-        return {'title': 'Filme nao cadastrado', "status": 403}, 403
+    except Exception as e:
+        print("ERRO", e)
+        return {'title': str(e), "status": 403}, 403
     
 
 @app.route("/midias/<int:id>", methods=["GET"])
@@ -34,6 +36,7 @@ def recupera_midia_titulo(titulo):
     try:
         return negocio.consulta_midias(None, titulo, None), 200
     except:
+        traceback.print_exc()
         return {'title': "erro inesperado", "status": 404}, 404
 
 @app.route("/midias/preferencia", methods=["POST"])
