@@ -36,13 +36,15 @@ def recupera_midia_titulo(titulo):
     except:
         return {'title': "erro inesperado", "status": 404}, 404
 
-@app.route("/midias/preferencia/<int:id_usuario>/<int:id_midia>/<int:tipo>")
-def assistir_midia(id_usuario, id_mida, tipo):
+@app.route("/midias/preferencia", methods=["POST"])
+def assistir_midia():
+    dado = request.json
+    print(dado)
     try:
-        negocio.assistir(id_usuario, id_midia, tipo)
+        negocio.assistir(dado['id_usuario'], dado['id_midia'], dado['tipo'])
         return {'title': "Vinculo estabelecido com sucesso", "status": 201}, 201
     except:
-        return {'title': "Nao foi possibel vincular usuario com midia", "status": 404}, 404
+        return {'title': "Nao foi possivel vincular usuario com midia", "status": 404}, 404
 
 
 
