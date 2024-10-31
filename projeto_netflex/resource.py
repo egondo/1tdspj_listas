@@ -36,7 +36,7 @@ def recupera_midia_titulo(titulo):
     except:
         return {'title': "erro inesperado", "status": 404}, 404
 
-@app.route("/midia/assistir/<int:id_usuario>/<int:id_midia>/<int:tipo>")
+@app.route("/midias/preferencia/<int:id_usuario>/<int:id_midia>/<int:tipo>")
 def assistir_midia(id_usuario, id_mida, tipo):
     try:
         negocio.assistir(id_usuario, id_midia, tipo)
