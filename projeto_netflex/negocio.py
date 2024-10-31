@@ -1,4 +1,5 @@
 import banco
+from datetime import datetime
 
 def insere_midia(filme: dict):
     #regra de negocio: não posso incluir midias com o mesmo titulo
@@ -29,6 +30,11 @@ def consulta_midias(id: int, titulo: str, categoria: str):
         for reg in dados:
             resposta.append(converte_midia_dict(reg))
         return resposta               
+    
+
+def assistir(id_usuario: int, id_midia: int, tipo: int):
+    pref = {"id_usuario": id_usuario, "id_midia": id_midia, "acao": tipo, "datahora": datetime.now()}
+    banco.insere_preferencia(pref)
     
 
 if __name__ == "__main__":
