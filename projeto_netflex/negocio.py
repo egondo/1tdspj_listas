@@ -11,7 +11,7 @@ def insere_midia(filme: dict):
         banco.insere_midia(filme)
 
 def converte_midia_dict(midia: tuple) -> dict:
-    return {"id": midia[0], "titulo": midia[1], "categoria": midia[2], "tipo": midia[3], "nota": midia[4]*(1.0)/midia[5]}
+    return {"id": midia[0], "titulo": midia[1], "categoria": midia[2], "tipo": midia[3]}
 
 def consulta_midias(id: int, titulo: str, categoria: str):
     if id:
@@ -31,11 +31,27 @@ def consulta_midias(id: int, titulo: str, categoria: str):
             resposta.append(converte_midia_dict(reg))
         return resposta               
     
-
 def assistir(id_usuario: int, id_midia: int, tipo: int):
     pref = {"id_usuario": id_usuario, "id_midia": id_midia, "acao": tipo, "datahora": datetime.now()}
     banco.insere_preferencia(pref)
     
+def recupera_midias() -> dict:
+    dado = banco.recupera_midias()
+    resp = []
+    if dado:
+        for reg in dado:
+            resp.append(converte_midia_dict(reg))
+    return resp
+
+
+def recupera_usuarios() -> dict:
+    dado = banco.recupera_usuario()
+    resp = []
+    if dado:
+        for reg in dado:
+            usu = {"id": reg[0], "nome": reg[1], "email": reg[2], "senha": reg[3]}
+            resp.append(usu)
+    return resp
 
 if __name__ == "__main__":
     dado = consulta_midias(1, None, None)

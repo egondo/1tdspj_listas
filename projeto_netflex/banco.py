@@ -64,5 +64,16 @@ def recupera_filmes_listados_usuario(id_usu: int):
             return cur.fetchall()
 
 
+def recupera_midias():
+    sql = "select id, titulo, categoria, tipo, avaliacao, qtd_avaliacoes from tbj_midia"
+    with get_conexao() as con:
+        with con.cursor() as cur:
+            cur.execute(sql)
+            return cur.fetchall()
 
-
+def recupera_usuario():
+    sql = "select id, nome, email, senha from tbj_usuario"
+    with get_conexao() as con:
+        with con.cursor() as cur:
+            cur.execute(sql)
+            return cur.fetchall()

@@ -6,6 +6,8 @@ st.write("Hello World!")
 
 st.page_link("exemplo.py", label="Cadastra", icon="🏠")
 st.page_link("pages/consulta.py", label="Consulta", icon="1️⃣")
+st.page_link("pages/assistir.py", label="Assistir filme")
+
 
 with st.form("Formulario cadastro de filme"):
     titulo = st.text_input("Título: ")

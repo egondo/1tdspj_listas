@@ -14,7 +14,6 @@ def insere_filme():
     except Exception as e:
         print("ERRO", e)
         return {'title': str(e), "status": 403}, 403
-    
 
 @app.route("/midias/<int:id>", methods=["GET"])
 def recupera_midia(id):
@@ -49,8 +48,13 @@ def assistir_midia():
     except:
         return {'title': "Nao foi possivel vincular usuario com midia", "status": 404}, 404
 
+@app.route("/midias", methods=["GET"])
+def recupera_todas_midias():
+    return negocio.recupera_midias()
 
-
+@app.route("/usuarios", methods=["GET"])
+def recupera_todos_usuarios():
+    return negocio.recupera_usuarios()
 
 
 
