@@ -1,3 +1,4 @@
+produto;marca;loja;data;quantidade;preco
 celular;LG;Centro;16/5/2023;11;1378.99
 celular;Xiaomi;Centro;16/5/2023;15;958.39
 celular;Samsung;Centro;16/5/2023;19;1908.79
